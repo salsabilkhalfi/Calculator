@@ -46,8 +46,9 @@ public class CalculatorUi {
                 currentResult = num1 / num2;
                 break;
             default:
+
                 break;
-        }
+         }
     }
 
 
@@ -79,11 +80,16 @@ public class CalculatorUi {
         equalBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 num2 = Double.parseDouble(currentNumber);
                 currentNumber = "";
                 selectedOperation(num1, num2, operation); // check which operato *+-/ and numbers
 
-
+               // begränsar antal decimaltal som visas
+                if (String.valueOf(currentResult).length() > 10) {
+                    String formattedResult = String.format("%.9f", currentResult);
+                    currentResult = Double.parseDouble(formattedResult);
+                }
                 calcField.setText(String.valueOf(currentResult)); // check value of
             }
         });
